@@ -11,72 +11,34 @@ package classes.model;
  */
 public class Logica {
 
-    public String getColor(int clave) {
-        String color = "";
-        switch (clave) {
-            case 0:
-                return color = "<p style='color:white'>";
-            case 1:
-                return color = "<p style='color:black'>";
-            case 2:
-                return color = "<p style='color:blue'>";
-            case 3:
-                return color = "<p style='color:green'>";
-            case 4:
-                return color = "<p style='color:yellow'>";
-            default:
-                return color;
+    public int getSeconds(int days) {
+        return days * 60 * 60 * 24;
+    }
+
+    public double getYards(int kilometros) {
+        return kilometros * 914.4;
+    }
+
+    public double getRankine(int centigrados) {
+        double valor = (9.0 / 5.0);
+        System.out.print(valor);
+        double valor2 = (centigrados + 273.15);
+        System.out.print(valor2);
+        return (valor * valor2);
+    }
+
+    public int getChange(int compra, int pago) {
+        if (pago < compra) {
+            return 0;
+        } else {
+            return pago - compra;
         }
     }
-    
-    
-    public String getBackground(int clave){
-             String color = "";
-        switch (clave) {
-            case 0:
-                return color = "<body bgcolor='white'>";
-            case 1:
-                return color = "<body bgcolor='black'>";
-            case 2:
-                return color = "<body bgcolor='blue'>";
-            case 3:
-                return color = "<body bgcolor='green'>";
-            case 4:
-                return color = "<body bgcolor='yellow'>";
-            default:
-                return color;
-        }
-        
-        
-    }
-    
-    
-        public String getStyle(String clave) {
-        String color = "";
-        switch (clave) {
-            case "negrita":
-                return color = "b";
-            case "subrayado":
-                return color = "u";
-            case "cursiva":
-                return color = "i";
-            case "tachado":
-                return color = "strike";
-            case "":
-                return color = "";
-            default:
-                return color;
-        }
-    }
-    
-    
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
 
         Logica obj = new Logica();
-
-        System.out.print(obj.getColor(0));
 
     }
 

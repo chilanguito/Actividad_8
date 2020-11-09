@@ -23,7 +23,7 @@ public class prueba_logica extends HttpServlet {
     private int v1, v2, res;
     private String opcion, op;
 
-    private String textArea, radiobutton;
+    private int textArea, textArea2;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +38,24 @@ public class prueba_logica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        textArea = request.getParameter("texto");
-        v1 = Integer.parseInt(request.getParameter("fondo"));
-        v2 = Integer.parseInt(request.getParameter("textcolor"));
-        radiobutton = request.getParameter("radio1");
+        textArea = Integer.parseInt(request.getParameter("texto"));
+
+        textArea2 = Integer.parseInt(request.getParameter("texto2"));
 
         System.out.println("VAlor de Text area " + textArea);
-        System.out.println("VAlor de v1 " + v1);
-        System.out.println("VAlor de v2 " + v2);
-        System.out.println("VAlor de radiobutton " + radiobutton);
 
         Logica obj = new Logica();
 
-        String colorFondo = obj.getBackground(v1);
-        String colorTexto = obj.getColor(v2);
+        //int result= obj.getSeconds(textArea);
+        // double yardas = obj.getYards(textArea);
+        // double rankinke= obj.getRankine(textArea);
+        String result;
 
-        String style = obj.getStyle(radiobutton);
-        System.out.println("VAlor de Style " + style);
-
-        System.out.println("VAlor de coloFondo:  " + colorFondo);
-        System.out.println("VAlor ColorTexto " + colorTexto);
+        if (obj.getChange(textArea, textArea2) == 0) {
+            result = "No se puede efectuar el cobro";
+        } else {
+            result = String.valueOf(obj.getChange(textArea, textArea2));
+        }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -66,12 +64,12 @@ public class prueba_logica extends HttpServlet {
             out.println("<head>");
             out.println("<title>Servlet prueba_logica</title>");
             out.println("</head>");
-            out.println(colorFondo);
+            out.println("<body>");
             out.println("<center><img src='imagenes/diego.jpeg' width='200px'> <p>Alumno: Narváez Barete Diego</p></center>");
 
             out.println("<center><table border='1' width='400px'>");
             out.println("<tr><td><p>Detalles</p></td></tr>");
-            out.println("<tr><td><marquee>" + colorTexto + "  <"+style+">" + textArea + " </"+style+"></p></marquee></td></tr>");
+            out.println("<tr><td><marquee>" + result + "</marquee></td></tr>");
 
             out.println("<tr><td><p>Para realizar una nueva operacion <br> da click en el siguiente hipervinculo</p></td></tr>");
 
