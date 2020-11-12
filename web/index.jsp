@@ -20,43 +20,58 @@
         <p>Alumno: Narváez Barete Diego</p>
 
         <fieldset style="border:2px solid green; width:400px">
-            <legend> Configurar </legend>
+            <legend> Elige una opción </legend>
             <form name='formulario' action="prueba_logica" method="post" id="form">
 
                 <table border="1" width="100%">
                     <tr>
                         <td  width="100%">
-                            Ingrese compra: 
+                            Selecciona el ejercicio
                         </td>
                     </tr>
 
                     <tr>                
                         <td  width="100%">
-                            <textarea id="texto" form="form" name="texto"></textarea>
-                        </td>
-                    </tr>
-                    
-                        <tr>
-                        <td  width="100%">
-                            Ingrese pago: 
-                        </td>
-                    </tr>
-
-                    <tr>                
-                        <td  width="100%">
-                            <textarea id="texto2" form="form" name="texto2"></textarea>
+                            <input type="radio" id="other" name="other" value="cronometro">
+                            <label for="other">Cronometro</label>
                         </td>
                     </tr>
 
                     <tr>
-                        <td width="30%">
-                            <input type="submit" value="aceptar" name="btnAceptar" id="button">
+                        <td  width="100%">
+                                 <input type="radio" id="other" name="other" value="cinta_metrica">
+                            <label for="other">Cinta metrica</label>
+                        </td>
+                    </tr>
+
+                    <tr>                
+                        <td  width="100%">
+                                 <input type="radio" id="other" name="other" value="termometro">
+                            <label for="other">Termometro</label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                       <td  width="100%">
+                                 <input type="radio" id="other" name="other" value="cobranza">
+                            <label for="other">Cobranza</label>
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr>
+                       <td width="30%">
+                            <input type="submit" value="aceptar" name="btnAceptar">
 
                         </td>
                         <td>
-                            <input type="reset" value="Nuevo" name="btnLimpiar" onclick="reset()" id="button">
+                            <input type="reset" value="Nuevo" name="btnLimpiar" onclick="reset()">
                         </td>
+                        
+                        
                     </tr>
+                    
+                    
                 </table>
                 </center>
             </form>

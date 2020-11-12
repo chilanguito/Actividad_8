@@ -5,6 +5,7 @@
  */
 package classes.model;
 
+import classes.model.funtions.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,8 +24,6 @@ public class prueba_logica extends HttpServlet {
     private int v1, v2, res;
     private String opcion, op;
 
-    private int textArea, textArea2;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,27 +37,37 @@ public class prueba_logica extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        textArea = Integer.parseInt(request.getParameter("texto"));
-
-        textArea2 = Integer.parseInt(request.getParameter("texto2"));
-
-        System.out.println("VAlor de Text area " + textArea);
+        opcion = request.getParameter("other");
 
         Logica obj = new Logica();
 
-        //int result= obj.getSeconds(textArea);
-        // double yardas = obj.getYards(textArea);
-        // double rankinke= obj.getRankine(textArea);
-        String result;
+        Data data = new Data();
 
-        if (obj.getChange(textArea, textArea2) == 0) {
-            result = "No se puede efectuar el cobro";
-        } else {
-            result = String.valueOf(obj.getChange(textArea, textArea2));
+        String[] array = data.mapa.get(opcion);
+
+        String valor = "";
+
+        int value = 0;
+
+        String caja = "";
+        
+        System.out.print(opcion);
+        
+        if (opcion.equalsIgnoreCase("cobranza")) {
+            caja = "<br><tr><td><p>Ingrese el monto total de la compra<input type='number' name='numero' required><br></td></tr><br>";
+
+        }
+        
+        System.out.print(caja);
+
+        for (String item : array) {
+            valor += "<option value='" + value + "'>" + item + "</option>";
+            value++;
         }
 
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -67,10 +76,21 @@ public class prueba_logica extends HttpServlet {
             out.println("<body>");
             out.println("<center><img src='imagenes/diego.jpeg' width='200px'> <p>Alumno: Narváez Barete Diego</p></center>");
 
+            out.println("<form name='formulario' action='result' method='post' id='form'>");
+
             out.println("<center><table border='1' width='400px'>");
             out.println("<tr><td><p>Detalles</p></td></tr>");
-            out.println("<tr><td><marquee>" + result + "</marquee></td></tr>");
+            out.println("<tr><td><select name='OS'>" + valor + "</select></td></tr>");
 
+            out.println("<tr><td><input type='text' name='opcion' value='"+opcion+"'></td></tr>");
+
+            out.println("<tr><td><input type='number' name='texto' required> <br></td></tr> <br> <br>");
+
+         //   out.println(caja);
+            
+            out.println("<tr><td> <input type='submit' value='aceptar' name='btnAceptar'> </td></tr>");
+
+     
             out.println("<tr><td><p>Para realizar una nueva operacion <br> da click en el siguiente hipervinculo</p></td></tr>");
 
             out.println("<tr><td><center><a href='index.jsp'> Nuevo </a></center></td></tr> </table></center>");
@@ -79,6 +99,8 @@ public class prueba_logica extends HttpServlet {
             out.println("</html>");
         }
     }
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -21,9 +21,9 @@ public class Logica {
 
     public double getRankine(int centigrados) {
         double valor = (9.0 / 5.0);
-        System.out.print(valor);
+ 
         double valor2 = (centigrados + 273.15);
-        System.out.print(valor2);
+   
         return (valor * valor2);
     }
 
